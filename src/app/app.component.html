@@ -1,16 +1,24 @@
-<div *ngIf="loading">
-    Loading...
-  </div>
-  <div *ngIf="error">
-    Error :(
-  </div>
-  <h2>
-      watchQuary
-  </h2>
-  <div *ngIf="rates">
-    <div *ngFor="let rate of rates">
-      <p>{{ rate.currency }}: {{ rate.rate }}</p>
+watchQuery
+<div *ngFor="let i of albumData">
+  {{ i }}
+</div>
+<hr/>
 
-    </div>
-  </div>
+Mutation : Create album
+<div *ngFor="let i of createAlbum">
+  {{ i }}
+</div>
+<hr/>
+
+Mutation: update Album
+<div *ngFor="let i of updateAlbum">
+  <p>id:{{ i.id }}</p>
+  <p>title:{{ i.title }}</p>
+  <p>username:{{ i.user.username }}</p>
+  <p>email:{{ i.user.email }}</p>
+  <h4>photos title</h4>
+  <ng-container *ngFor="let data of photos">
+    <p>{{ data.title }}</p>
+  </ng-container>
+</div>
 <router-outlet></router-outlet>
