@@ -21,4 +21,13 @@ Mutation: update Album
     <p>{{ data.title }}</p>
   </ng-container>
 </div>
+<hr>
+pagination 
+<div>
+  <ng-container *ngFor="let posts of feed">
+    <p>id:{{ posts.id }}</p>
+    <p>title:{{posts.title}}</p>
+  </ng-container>
+  <button (click)="fetchMore()">Load more</button>
+</div>
 <router-outlet></router-outlet>

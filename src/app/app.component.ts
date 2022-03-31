@@ -15,7 +15,7 @@ const CREATE_ALBUM = gql`
 
 const UPDATE_ALBUM = gql`
   mutation {
-    updateAlbum(id: "1", input: { title: "test", userId: "3" }) {
+    updateAlbum(id: "3", input: { title: "test", userId: "7" }) {
       id
       title
       user {
@@ -36,6 +36,21 @@ const DELETE_POST = gql`
     deletePost(id: "3")
   }
 `;
+
+const PAGINATION = gql`
+  query ($options: PageQueryOptions) {
+    posts(options: $options) {
+      data {
+        id
+        title
+      }
+      meta {
+        totalCount
+      }
+    }
+  }
+`;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -46,6 +61,9 @@ export class AppComponent implements OnInit {
   public createAlbum: any = [];
   public updateAlbum: any = [];
   public photos: any;
+  public paginationQuery: any;
+  public feed: any[] = [];
+
   constructor(private apollo: Apollo) {}
 
   ngOnInit() {
@@ -53,6 +71,24 @@ export class AppComponent implements OnInit {
     this.createMutation();
     this.updateMutation();
     this.deletePost();
+    this.paginationQuery = this.apollo.watchQuery<any>({
+      query: PAGINATION,
+      variables: {
+        options: {
+          paginate: {
+            page: 1,
+            limit: 10,
+          },
+        },
+      },
+      fetchPolicy: 'network-only',
+    });
+    this.feed = this.paginationQuery.valueChanges.subscribe((res: any) => {
+      //console.log('data :>> ', res);
+      this.feed = res?.data?.posts?.data;
+      //console.log('feed data:>> ', res?.data?.posts?.data);
+      console.log('this.feed :>> ', this.feed.length);
+    });
   }
 
   public watchQuery() {
@@ -88,7 +124,7 @@ export class AppComponent implements OnInit {
         mutation: UPDATE_ALBUM,
       })
       .subscribe((res: any) => {
-        //console.log('res :>> ', res.data.updateAlbum);
+        console.log('res :>> ', res.data.updateAlbum);
         this.updateAlbum = [res?.data?.updateAlbum];
         this.photos = res.data.updateAlbum.photos.data;
         //console.log('this.updateAlbum :>> ', res.data.updateAlbum.photos.data);
@@ -98,6 +134,15 @@ export class AppComponent implements OnInit {
   public deletePost() {
     this.apollo.mutate({ mutation: DELETE_POST }).subscribe((res: any) => {
       console.log('res :>> ', res?.data.deletePost);
+    });
+  }
+
+  public fetchMore() {
+    this.paginationQuery.fetchMore({
+      query: PAGINATION,
+      variables: {
+        page: this.feed.length,
+      },
     });
   }
 }
