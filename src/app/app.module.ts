@@ -1,3 +1,4 @@
+import { counterReducer } from './counter/state/counter.reducer';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { InMemoryCache } from '@apollo/client/core';
@@ -6,16 +7,22 @@ import {ApolloModule, APOLLO_FLAGS, APOLLO_OPTIONS} from 'apollo-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule} from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { CounterOutputComponent } from './counter/counter-output/counter-output.component';
+import { GraphqlComponent } from './graphql/graphql.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CounterOutputComponent,
+    GraphqlComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ApolloModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({count:counterReducer})
   ],
   providers: [
     {
