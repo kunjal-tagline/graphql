@@ -1,3 +1,4 @@
+import { LearnGraphqlComponent } from './learn-graphql/learn-graphql.component';
 import { GraphqlComponent } from './graphql/graphql.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'graphql',
     component: GraphqlComponent,
+  },
+  {
+    path: 'learn-graphql',
+    component: LearnGraphqlComponent,
   },
   {
     path: 'book',

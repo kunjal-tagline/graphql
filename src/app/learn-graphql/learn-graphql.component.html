@@ -1,0 +1,17 @@
+<div class="pt-5 ms-5">
+    <input type="text" id="input">
+</div>
+<div class="pt-5 container">
+    <table class="table table-striped">
+        <thead class="bg-primary">
+            <th>id</th>
+            <th>title</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let post of postData">
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

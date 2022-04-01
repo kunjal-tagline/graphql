@@ -146,4 +146,5 @@ export class GraphqlComponent implements OnInit {
       },
     });
   }
+
 }

@@ -12,9 +12,10 @@ import { StoreModule } from '@ngrx/store';
 import { CounterOutputComponent } from './counter/counter-output/counter-output.component';
 import { GraphqlComponent } from './graphql/graphql.component';
 import { collectionReducer } from './books/state/collections.reducer';
+import { LearnGraphqlComponent } from './learn-graphql/learn-graphql.component';
 
 @NgModule({
-  declarations: [AppComponent, CounterOutputComponent, GraphqlComponent],
+  declarations: [AppComponent, CounterOutputComponent, GraphqlComponent, LearnGraphqlComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
