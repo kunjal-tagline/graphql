@@ -14,6 +14,11 @@ const routes: Routes = [
     component: GraphqlComponent,
   },
   {
+    path: 'book',
+    loadChildren: () =>
+      import('./books/books.module').then((m) => m.BooksModule),
+  },
+  {
     path: '**',
     component: AppComponent,
   },
