@@ -1,33 +1,5 @@
-watchQuery
-<div *ngFor="let i of albumData">
-  {{ i }}
-</div>
-<hr/>
-
-Mutation : Create album
-<div *ngFor="let i of createAlbum">
-  {{ i }}
-</div>
-<hr/>
-
-Mutation: update Album
-<div *ngFor="let i of updateAlbum">
-  <p>id:{{ i.id }}</p>
-  <p>title:{{ i.title }}</p>
-  <p>username:{{ i.user.username }}</p>
-  <p>email:{{ i.user.email }}</p>
-  <h4>photos title</h4>
-  <ng-container *ngFor="let data of photos">
-    <p>{{ data.title }}</p>
-  </ng-container>
-</div>
-<hr>
-pagination 
 <div>
-  <ng-container *ngFor="let posts of feed">
-    <p>id:{{ posts.id }}</p>
-    <p>title:{{posts.title}}</p>
-  </ng-container>
-  <button (click)="fetchMore()">Load more</button>
+  <button routerLink="graphql" class="btn btn-danger">Graphql</button>
+  <button routerLink="counter" class="btn btn-primary">NgRX counter</button>
 </div>
 <router-outlet></router-outlet>

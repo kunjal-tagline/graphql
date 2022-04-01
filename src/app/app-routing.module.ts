@@ -1,10 +1,26 @@
+import { GraphqlComponent } from './graphql/graphql.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { CounterOutputComponent } from './counter/counter-output/counter-output.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'counter',
+    component: CounterOutputComponent,
+  },
+  {
+    path: 'graphql',
+    component: GraphqlComponent,
+  },
+  {
+    path: '**',
+    component: AppComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
