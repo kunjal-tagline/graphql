@@ -1,4 +1,4 @@
-import { increment, decrement, reset } from '../state/counter.actions';
+import { increment, decrement, reset, customInc } from '../state/counter.actions';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
@@ -10,6 +10,7 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class CounterOutputComponent implements OnInit {
   public counter!: number;
+  value!:number;
   counter$!: Observable<any>;
   counterSubscription!: Subscription;
   constructor(private store: Store<{ count: { counter: number } }>) {}
@@ -32,6 +33,11 @@ export class CounterOutputComponent implements OnInit {
 
   public onReset() {
     this.store.dispatch(reset());
+  }
+
+  public add(){
+    this.store.dispatch(customInc({value: +this.value}))
+    console.log('value :>> ', this.value);
   }
 
   ngOnDestroy(): void {
