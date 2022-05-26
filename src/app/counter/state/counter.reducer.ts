@@ -13,9 +13,8 @@ export const counterReducer = createReducer(
   }),
   on(reset, (state) => {
     return { counter: 0 };
-  }),
-  on(customInc, (state, action) => {
-    console.log('action :>> ', action);
-    return { ...state, counter: state.counter + action.value };
   })
+  // on(customInc, (state, action) => {
+  //   return { ...state, counter: state.counter + action.value };
+  // })
 );

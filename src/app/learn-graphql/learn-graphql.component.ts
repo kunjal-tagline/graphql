@@ -1,6 +1,6 @@
 import { Apollo, gql } from 'apollo-angular';
 import { Component, OnInit } from '@angular/core';
-import { fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged, fromEvent, mergeAll } from 'rxjs';
 
 const GET_POSTS = gql`
   query ($options: PageQueryOptions) {
@@ -29,30 +29,36 @@ export class LearnGraphqlComponent implements OnInit {
 
   ngOnInit(): void {
     const type = fromEvent(document, 'input');
-    type.pipe().subscribe((res: any) => {
-      console.log('res :>> ', res);
-      this.id = res?.data;
-    });
+    type
+      .pipe(distinctUntilChanged(), debounceTime(1000))
+      .subscribe((res: any) => {
+        console.log('res :>> ', res);
+        this.id = res?.data;
+        console.log('this.id :>> ', this.id);
+      });
     this.getPosts();
   }
 
-  public getPosts() {
-    (this.loading = true),
-      this.apollo
-        .watchQuery({
-          query: GET_POSTS,
-          variables: {
-            options: {
-              paginate: {
-                page: 1,
-                limit: 100,
-              },
+  public getPosts(): void {
+    this.apollo
+      .watchQuery({
+        query: GET_POSTS,
+        variables: {
+          options: {
+            search: {
+              q: '1',
             },
           },
-        })
-        .valueChanges.subscribe((res: any) => {
-          console.log('res :>> ', res);
-          this.postData = res?.data?.posts?.data;
-        });
+        },
+      })
+      .valueChanges.subscribe((res: any) => {
+        //console.log('res.data.posts.data.id :>> ', res.data.posts.data[0].id);
+        // if (this.id == res.data.posts.data[0].id) {
+        //   console.log(' filter:>> ');
+        //   //this.postData = res?.data?.posts?.data;
+        // }
+        console.log('res :>> ', res);
+        //this.postData = res?.data?.posts?.data;
+      });
   }
 }
