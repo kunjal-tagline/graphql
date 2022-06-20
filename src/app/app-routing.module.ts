@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CounterOutputComponent } from './counter/counter-output/counter-output.component';
+import { PostListComponent } from './posts/post-list/post-list.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
     path: 'book',
     loadChildren: () =>
       import('./books/books.module').then((m) => m.BooksModule),
+  },
+  {
+    path:'posts',
+    component:PostListComponent
   },
   {
     path: '**',

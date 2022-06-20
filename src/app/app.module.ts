@@ -16,6 +16,8 @@ import { LearnGraphqlComponent } from './learn-graphql/learn-graphql.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FormsModule } from '@angular/forms';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { PostListComponent } from './posts/post-list/post-list.component';
+import { environment } from 'src/environments/environment';
 // export function debug(reducer: ActionReducer<any>):ActionReducer<any>{
 //   return function(state,action){
 //     console.log('state :>> ', state);
@@ -33,6 +35,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     CounterOutputComponent,
     GraphqlComponent,
     LearnGraphqlComponent,
+    PostListComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,11 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
       counter: counterReducer,
       books: booksReducer,
       collection: collectionReducer,
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
     NgCircleProgressModule.forRoot({
       // set defaults here
