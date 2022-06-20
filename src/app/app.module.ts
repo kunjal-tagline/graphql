@@ -13,7 +13,7 @@ import { CounterOutputComponent } from './counter/counter-output/counter-output.
 import { GraphqlComponent } from './graphql/graphql.component';
 import { collectionReducer } from './books/state/collections.reducer';
 import { LearnGraphqlComponent } from './learn-graphql/learn-graphql.component';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FormsModule } from '@angular/forms';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 // export function debug(reducer: ActionReducer<any>):ActionReducer<any>{
@@ -28,7 +28,12 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 // export const metaReducers: MetaReducer<any>[]=debug;
 
 @NgModule({
-  declarations: [AppComponent, CounterOutputComponent, GraphqlComponent, LearnGraphqlComponent],
+  declarations: [
+    AppComponent,
+    CounterOutputComponent,
+    GraphqlComponent,
+    LearnGraphqlComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,7 +42,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     HttpClientModule,
     StoreDevtoolsModule,
     StoreModule.forRoot({
-      count: counterReducer,
+      counter: counterReducer,
       books: booksReducer,
       collection: collectionReducer,
     }),
@@ -46,14 +51,14 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
       radius: 45,
       outerStrokeWidth: 21,
       innerStrokeWidth: 22,
-      space:-22,
-      outerStrokeColor: "#8EA986",
-      innerStrokeColor: "#dfe5dd",
-      animation:false,
+      space: -22,
+      outerStrokeColor: '#8EA986',
+      innerStrokeColor: '#dfe5dd',
+      animation: false,
       outerStrokeLinecap: 'square',
-      showSubtitle:false,
-      renderOnClick:false,
-    })
+      showSubtitle: false,
+      renderOnClick: false,
+    }),
   ],
   providers: [
     {

@@ -1,3 +1,5 @@
+import { getCounter } from './../state/counter.selector';
+import { counterState } from './../state/counter.state';
 import {
   increment,
   decrement,
@@ -17,17 +19,16 @@ export class CounterOutputComponent implements OnInit {
   public counter!: number;
   public name!: string;
   value!: number;
-  counter$!: Observable<any>;
+  counter$!: Observable<number>;
   counterSubscription!: Subscription;
-  constructor(private store: Store<{ count:any }>) {}
+  constructor(private store: Store<{ counter: counterState }>) {}
 
   ngOnInit(): void {
-    this.counterSubscription = this.store.select('count').subscribe((data) => {
-      this.counter = data.counter;
-      this.name = data.name;
-    });
+    // this.counterSubscription = this.store.select(getCounter).subscribe((counter) => {
+    //   this.counter = counter;
+    // });
 
-    this.counter$ = this.store.select('count');
+    this.counter$ = this.store.select(getCounter);
   }
 
   public onInc() {
@@ -45,13 +46,10 @@ export class CounterOutputComponent implements OnInit {
   public add() {
     this.store.dispatch(customInc({ value: this.value }));
   }
- 
-  public onChangeName(){
-    
-  }
+
   ngOnDestroy(): void {
-    if (this.counterSubscription) {
-      this.counterSubscription.unsubscribe();
-    }
+    // if (this.counterSubscription) {
+    //   this.counterSubscription.unsubscribe();
+    // }
   }
 }
