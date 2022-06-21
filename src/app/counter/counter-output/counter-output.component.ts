@@ -1,5 +1,6 @@
-import { getCounter } from './../state/counter.selector';
 import { counterState } from './../state/counter.state';
+import { AppState } from './../../store/app.state';
+import { getCounter } from './../state/counter.selector';
 import {
   increment,
   decrement,
@@ -21,7 +22,7 @@ export class CounterOutputComponent implements OnInit {
   value!: number;
   counter$!: Observable<number>;
   counterSubscription!: Subscription;
-  constructor(private store: Store<{ counter: counterState }>) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     // this.counterSubscription = this.store.select(getCounter).subscribe((counter) => {

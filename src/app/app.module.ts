@@ -1,3 +1,4 @@
+import { AppReducer } from './store/app.state';
 import { booksReducer } from './books/state/books.reducer';
 import { counterReducer } from './counter/state/counter.reducer';
 import { NgModule } from '@angular/core';
@@ -8,7 +9,7 @@ import { ApolloModule, APOLLO_FLAGS, APOLLO_OPTIONS } from 'apollo-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { CounterOutputComponent } from './counter/counter-output/counter-output.component';
 import { GraphqlComponent } from './graphql/graphql.component';
 import { collectionReducer } from './books/state/collections.reducer';
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { environment } from 'src/environments/environment';
+import { postsReducer } from './posts/state/posts.reducer';
 // export function debug(reducer: ActionReducer<any>):ActionReducer<any>{
 //   return function(state,action){
 //     console.log('state :>> ', state);
@@ -46,8 +48,10 @@ import { environment } from 'src/environments/environment';
     StoreDevtoolsModule,
     StoreModule.forRoot({
       counter: counterReducer,
+      //AppReducer
       books: booksReducer,
       collection: collectionReducer,
+      posts: postsReducer,
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
@@ -66,6 +70,10 @@ import { environment } from 'src/environments/environment';
       outerStrokeLinecap: 'square',
       showSubtitle: false,
       renderOnClick: false,
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
     }),
   ],
   providers: [
