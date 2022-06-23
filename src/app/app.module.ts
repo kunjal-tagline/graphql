@@ -15,11 +15,12 @@ import { GraphqlComponent } from './graphql/graphql.component';
 import { collectionReducer } from './books/state/collections.reducer';
 import { LearnGraphqlComponent } from './learn-graphql/learn-graphql.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { environment } from 'src/environments/environment';
 import { postsReducer } from './posts/state/posts.reducer';
+import { AddPostComponent } from './posts/add-post/add-post.component';
 // export function debug(reducer: ActionReducer<any>):ActionReducer<any>{
 //   return function(state,action){
 //     console.log('state :>> ', state);
@@ -38,11 +39,13 @@ import { postsReducer } from './posts/state/posts.reducer';
     GraphqlComponent,
     LearnGraphqlComponent,
     PostListComponent,
+    AddPostComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     ApolloModule,
     HttpClientModule,
     StoreDevtoolsModule,

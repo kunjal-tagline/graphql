@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CounterOutputComponent } from './counter/counter-output/counter-output.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
+import { AddPostComponent } from './posts/add-post/add-post.component';
 
 const routes: Routes = [
   {
@@ -25,8 +26,9 @@ const routes: Routes = [
       import('./books/books.module').then((m) => m.BooksModule),
   },
   {
-    path:'posts',
-    component:PostListComponent
+    path: 'posts',
+    component: PostListComponent,
+    children: [{ path: 'add-post', component: AddPostComponent }],
   },
   {
     path: '**',
