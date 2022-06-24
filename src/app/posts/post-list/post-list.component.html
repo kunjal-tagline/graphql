@@ -16,7 +16,10 @@
                         <td>{{item.id}}</td>
                         <td>{{item.title}}</td>
                         <td>{{item.description}}</td>
-                        <td><a href="" class="btn btn-secondary" [routerLink]="['edit',item.id]">Update</a></td>
+                        <td>
+                            <a href="" class="btn btn-secondary" [routerLink]="['edit',item.id]">Update</a>&nbsp;
+                            <a href="" class="btn btn-danger" (click)="onDeletePost(item.id)">Delete</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

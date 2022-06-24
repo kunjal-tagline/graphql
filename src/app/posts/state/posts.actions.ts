@@ -9,3 +9,7 @@ export const updatePost = createAction(
   '[post page] update post',
   props<{ post: Post }>()
 );
+export const deletePost = createAction(
+  '[post page] delete post',
+  props<{ id:string | undefined }>()
+);
