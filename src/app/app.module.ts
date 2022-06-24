@@ -21,6 +21,7 @@ import { PostListComponent } from './posts/post-list/post-list.component';
 import { environment } from 'src/environments/environment';
 import { postsReducer } from './posts/state/posts.reducer';
 import { AddPostComponent } from './posts/add-post/add-post.component';
+import { EditPostComponent } from './posts/edit-post/edit-post.component';
 // export function debug(reducer: ActionReducer<any>):ActionReducer<any>{
 //   return function(state,action){
 //     console.log('state :>> ', state);
@@ -40,6 +41,7 @@ import { AddPostComponent } from './posts/add-post/add-post.component';
     LearnGraphqlComponent,
     PostListComponent,
     AddPostComponent,
+    EditPostComponent,
   ],
   imports: [
     BrowserModule,
