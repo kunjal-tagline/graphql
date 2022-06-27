@@ -22,6 +22,8 @@ import { environment } from 'src/environments/environment';
 import { postsReducer } from './posts/state/posts.reducer';
 import { AddPostComponent } from './posts/add-post/add-post.component';
 import { EditPostComponent } from './posts/edit-post/edit-post.component';
+import { LoginComponent } from './auth/login/login.component';
+import { EffectsModule } from '@ngrx/effects';
 // export function debug(reducer: ActionReducer<any>):ActionReducer<any>{
 //   return function(state,action){
 //     console.log('state :>> ', state);
@@ -41,9 +43,10 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
     LearnGraphqlComponent,
     PostListComponent,
     AddPostComponent,
-    EditPostComponent,
+    EditPostComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -80,6 +83,7 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
       maxAge: 25,
       logOnly: environment.production,
     }),
+    EffectsModule.forRoot([]),
   ],
   providers: [
     {

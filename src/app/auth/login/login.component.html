@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="d-flex justify-content-center">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <h3>Login</h3>
+            <div class="pt-4">
+                <label for="email">Email</label>
+                <input type="text" formControlName="email" required name="email" placeholder="Enter email" />
+                <ng-template *ngIf="f.email.touched && !f.email.valid">
+                    <span *ngIf="f.email.errors?.required">Email is required.</span>
+                    <span *ngIf="f.email.errors?.email">Invalid Email.</span>
+                </ng-template>
+            </div>
+            <div class="pt-4">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" name="password" required placeholder="Password" />
+                <ng-template *ngIf="f.password.touched && !f.password.valid" >
+                    <span *ngIf="f.password.errors?.required">Password is required.</span>
+                </ng-template>
+            </div>
+
+            <p class="pt-2">No Account? <a routerLink="/signup">Sign Up Here!</a></p>
+            <div class="pt-4">
+                <button type="submit" class="btn btn-primary justify-content-md-center" [disabled]="!loginForm.valid">
+                    Submit
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+</div>
