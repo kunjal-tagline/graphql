@@ -7,6 +7,7 @@
   <button routerLink="auth" class="btn btn-primary">Login</button>
   <button routerLink="auth/signUp" class="btn btn-info">Sign up</button>
 </div>
+<app-loading-spinner *ngIf="showLoading | async"></app-loading-spinner>
 <router-outlet></router-outlet>
 <!-- <circle-progress [percent]="progressValue" disabled>
 </circle-progress> -->

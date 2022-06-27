@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { AppReducer } from './store/app.state';
 import { booksReducer } from './books/state/books.reducer';
 import { counterReducer } from './counter/state/counter.reducer';
@@ -22,7 +23,6 @@ import { environment } from 'src/environments/environment';
 import { postsReducer } from './posts/state/posts.reducer';
 import { AddPostComponent } from './posts/add-post/add-post.component';
 import { EditPostComponent } from './posts/edit-post/edit-post.component';
-import { LoginComponent } from './auth/login/login.component';
 import { EffectsModule } from '@ngrx/effects';
 // export function debug(reducer: ActionReducer<any>):ActionReducer<any>{
 //   return function(state,action){
@@ -43,7 +43,7 @@ import { EffectsModule } from '@ngrx/effects';
     LearnGraphqlComponent,
     PostListComponent,
     AddPostComponent,
-    EditPostComponent
+    EditPostComponent,
   ],
   imports: [
     HttpClientModule,
@@ -54,9 +54,9 @@ import { EffectsModule } from '@ngrx/effects';
     ApolloModule,
     HttpClientModule,
     StoreDevtoolsModule,
+    SharedModule,
     StoreModule.forRoot({
       counter: counterReducer,
-      //AppReducer
       books: booksReducer,
       collection: collectionReducer,
       posts: postsReducer,
