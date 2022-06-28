@@ -18,13 +18,10 @@ import { LearnGraphqlComponent } from './learn-graphql/learn-graphql.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-import { PostListComponent } from './posts/post-list/post-list.component';
 import { environment } from 'src/environments/environment';
-import { postsReducer } from './posts/state/posts.reducer';
-import { AddPostComponent } from './posts/add-post/add-post.component';
-import { EditPostComponent } from './posts/edit-post/edit-post.component';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth/state/auth.effects';
+import { postsReducer } from './posts/state/posts.reducer';
 // export function debug(reducer: ActionReducer<any>):ActionReducer<any>{
 //   return function(state,action){
 //     console.log('state :>> ', state);
@@ -42,9 +39,6 @@ import { AuthEffects } from './auth/state/auth.effects';
     CounterOutputComponent,
     GraphqlComponent,
     LearnGraphqlComponent,
-    PostListComponent,
-    AddPostComponent,
-    EditPostComponent,
   ],
   imports: [
     HttpClientModule,
