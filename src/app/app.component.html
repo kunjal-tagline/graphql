@@ -5,7 +5,10 @@
   <button routerLink="book" class="btn btn-secondary">NgRX books</button>
   <button routerLink="posts" class="btn btn-warning">NgRX posts</button>
   <button routerLink="auth" class="btn btn-primary">Login</button>
-  <button routerLink="auth/signUp" class="btn btn-info">Sign up</button>
+  <button routerLink="auth/sign-up" class="btn btn-info">Sign up</button>
+</div>
+<div class="alert alert-danger" *ngIf="errorMessage | async as error">
+  {{ error }}
 </div>
 <app-loading-spinner *ngIf="showLoading | async"></app-loading-spinner>
 <router-outlet></router-outlet>

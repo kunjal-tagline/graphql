@@ -1,6 +1,6 @@
-import { setLoadingSpinner } from './../../shared/shared.actions';
+import { setErrorMessage, setLoadingSpinner } from './../../shared/shared.actions';
 import { Store } from '@ngrx/store';
-import { loginStart, loginSucess } from './auth.actions';
+import { loginStart, loginSucess, signUpStart, signUpSucess } from './auth.actions';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class AuthEffects {
   constructor(
     private action$: Actions,
-    private authServiuce: AuthService,
+    private authService: AuthService,
     private store: Store,
     private roter: Router
   ) {}
@@ -20,15 +20,18 @@ export class AuthEffects {
     return this.action$.pipe(
       ofType(loginStart),
       exhaustMap((action) => {
-        return this.authServiuce.login(action.email, action.password).pipe(
+        return this.authService.login(action.email, action.password).pipe(
           map((data) => {
             this.store.dispatch(setLoadingSpinner({ status: false }));
-            const user = this.authServiuce.formatUser(data);
-            
+            const user = this.authService.formatUser(data);
             return loginSucess({ user });
           }),
           catchError((errRes) => {
-            return of(errRes);
+            this.store.dispatch(setLoadingSpinner({ status: false }));
+            const errorMessage = this.authService.getErrorMessage(
+              errRes.error.error.message
+            );
+            return of(setErrorMessage({ message: errorMessage }));
           })
         );
       })
@@ -38,12 +41,36 @@ export class AuthEffects {
   loginRedirect$ = createEffect(
     () => {
       return this.action$.pipe(
-        ofType(loginSucess),
+        ofType(...[loginSucess,signUpSucess]),
         tap((action) => {
-          this.roter.navigate(['/']);
+          this.store.dispatch(setErrorMessage({message:''}))
+          this.roter.navigate(['/graphql']);
         })
       );
     },
     { dispatch: false }
   );
+
+  signUp$ = createEffect(() => {
+    return this.action$.pipe(
+      ofType(signUpStart),
+      exhaustMap((action) => {
+        return this.authService.signUp(action.email, action.password).pipe(
+          map((data) => {
+            this.store.dispatch(setLoadingSpinner({ status: false }));
+            const user = this.authService.formatUser(data);
+            this.store.dispatch(setErrorMessage({message:''}))
+            return signUpSucess({ user });
+          }),
+          catchError((errRes) => {
+            this.store.dispatch(setLoadingSpinner({ status: false }));
+            const errorMessage = this.authService.getErrorMessage(
+              errRes.error.error.message
+            );
+            return of(setErrorMessage({ message: errorMessage }));
+          })
+        );
+      })
+    );
+  });
 }

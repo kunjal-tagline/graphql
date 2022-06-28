@@ -7,29 +7,18 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthReducer } from './state/auth.reducer';
 import { AUTH_STATE_NAME } from './state/auth.selector';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { AuthRoutingModule } from './auth-routing.module';
 
-const routes: Routes = [
-  {
-    path: '',
-    children: [
-      {
-        path: '',
-        redirectTo: 'login',
-      },
-      {
-        path: 'login',
-        component: LoginComponent,
-      },
-    ],
-  },
-];
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, SignUpComponent],
   imports: [
     ReactiveFormsModule,
-    RouterModule.forChild(routes),
+    EffectsModule.forFeature([AuthEffects]),
     StoreModule.forFeature(AUTH_STATE_NAME, AuthReducer),
+    AuthRoutingModule,
+    AuthRoutingModule
   ],
 })
 export class AuthModule {}

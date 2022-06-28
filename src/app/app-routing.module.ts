@@ -44,6 +44,10 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: '**',
+    redirectTo: 'graphql',
+  },
 ];
 
 @NgModule({

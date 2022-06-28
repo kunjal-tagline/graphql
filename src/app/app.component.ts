@@ -1,5 +1,5 @@
 import { SharedState } from './shared/shared.state';
-import { getLoading } from './shared/shared.selector';
+import { getLoading, getErrorMessage } from './shared/shared.selector';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -12,10 +12,11 @@ import { Store } from '@ngrx/store';
 export class AppComponent implements OnInit {
   progressValue: number = 50;
   showLoading!: Observable<boolean>;
+  errorMessage!: Observable<string>;
 
   constructor(private store: Store<SharedState>) {}
   ngOnInit() {
     this.showLoading = this.store.select(getLoading);
-    console.log('this.showLoading :>> ', this.showLoading);
+    this.errorMessage=this.store.select(getErrorMessage)
   }
 }
