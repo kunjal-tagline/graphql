@@ -1,3 +1,5 @@
+import { PostsEffects } from './state/posts.effects';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     PostsRoutingModule,
     ReactiveFormsModule,
+    EffectsModule.forFeature([PostsEffects])
   ],
 })
 export class PostsModule {}
