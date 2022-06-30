@@ -1,3 +1,6 @@
+import { find } from 'rxjs';
+import { RouterStateUrl } from './../../router/custom.serializer';
+import { getCurrentRoute } from './../../router/router.selector';
 import { createFeatureSelector, createSelector, props } from '@ngrx/store';
 import { PostsState } from './posts.state';
 
@@ -9,10 +12,11 @@ export const getPosts = createSelector(getPostsState, (state) => {
 
 export const getPostByID = createSelector(
   getPostsState,
-  (state: any, props: any): any => {
-    return state.posts.find((post: any) => {
-      post.id === props.id;
-    });
+  getCurrentRoute,
+  (posts, route: RouterStateUrl)=> {
+    // return posts.find((post: any) => {
+    //   post.id === route.params['id'];
+    // });
   }
 );
 

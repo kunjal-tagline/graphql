@@ -3,12 +3,7 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-edit-post',
   templateUrl: './edit-post.component.html',
@@ -19,22 +14,29 @@ export class EditPostComponent implements OnInit {
   postSubscription!: Subscription;
   public updatePostForm!: FormGroup;
 
-  constructor(
-    private route: ActivatedRoute,
-    private store: Store<any>,
-  ) {}
+  constructor(private route: ActivatedRoute, private store: Store<any>) {}
 
   ngOnInit(): void {
-   
-    this.route.paramMap.subscribe((params) => {
-      const id: string | null = params.get('id');
-      this.postSubscription = this.store
-        .select(getPostByID, {id})
-        .subscribe((data) => {
-          this.post = data;
-          this.createForm();
+    this.createForm();
+    this.postSubscription = this.store
+      .select(getPostByID)
+      .subscribe((post: any) => {
+        console.log('this.post :>> ', this.post);
+        this.post = post; 
+        this.updatePostForm.patchValue({
+          title: post.title,
+          description: post.description,
         });
-    });
+      });
+    // this.route.paramMap.subscribe((params) => {
+    //   const id: string | null = params.get('id');
+    //   this.postSubscription = this.store
+    //     .select(getPostByID, {id})
+    //     .subscribe((data) => {
+    //       this.post = data;
+    //       this.createForm();
+    //     });
+    // });
   }
 
   createForm() {

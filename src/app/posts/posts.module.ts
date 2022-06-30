@@ -9,9 +9,10 @@ import { AddPostComponent } from './add-post/add-post.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 
 @NgModule({
-  declarations: [PostListComponent, AddPostComponent, EditPostComponent],
+  declarations: [PostListComponent, AddPostComponent, EditPostComponent, PostDetailComponent],
   imports: [
     CommonModule,
     PostsRoutingModule,

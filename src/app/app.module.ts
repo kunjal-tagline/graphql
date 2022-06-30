@@ -22,6 +22,8 @@ import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth/state/auth.effects';
 import { postsReducer } from './posts/state/posts.reducer';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from './router/custom.serializer';
 // export function debug(reducer: ActionReducer<any>):ActionReducer<any>{
 //   return function(state,action){
 //     console.log('state :>> ', state);
@@ -79,6 +81,7 @@ import { postsReducer } from './posts/state/posts.reducer';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([AuthEffects]),
+    StoreRouterConnectingModule.forRoot({ serializer: CustomSerializer }),
   ],
   providers: [
     {
