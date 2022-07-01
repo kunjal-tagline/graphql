@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { AddEditComponent } from './posts/add-edit/add-edit.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { SiglePostComponent } from './posts/sigle-post/sigle-post.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddEditComponent,
     PostListComponent,
-    SiglePostComponent
+    SiglePostComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
