@@ -35,7 +35,7 @@ export class AddPostComponent implements OnInit {
   //   }
   // }
   onAddPost() {
-    const post: Post = {
+    const post: any = {
       title: this.addPostForm.value.title,
       description: this.addPostForm.value.description,
     };

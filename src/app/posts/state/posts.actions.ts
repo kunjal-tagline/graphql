@@ -1,7 +1,7 @@
 import { PostList } from './../../models/posts.model';
 import { createAction, props } from '@ngrx/store';
 import { Post } from 'src/app/models/posts.model';
-
+import { Update } from '@ngrx/entity';
 // CRUD OPRATION ACTIONS
 export const addPost = createAction(
   '[ADD POST] Adding post',
@@ -9,11 +9,11 @@ export const addPost = createAction(
 );
 export const updatePost = createAction(
   '[post page] update post',
-  props<{ post: Post }>()
+  props<{ post: Update<Post> }>()
 );
 export const deletePost = createAction(
   '[post page] delete post',
-  props<{ id: string | undefined }>()
+  props<{ id: any }>()
 );
 
 // LOAD POST ACTIONS
