@@ -1,3 +1,4 @@
+import { PostDataService } from './services/post-data.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -32,7 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
-  providers: [],
+  providers: [PostDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
