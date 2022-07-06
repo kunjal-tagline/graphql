@@ -16,6 +16,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { postsResolver } from './posts/posts.resolver';
+import { reducers, metaReducers } from './reducers';
+import { AppEffects } from './app.effects';
 
 @NgModule({
   declarations: [
@@ -31,8 +33,20 @@ import { postsResolver } from './posts/posts.resolver';
     HttpClientModule,
     EntityDataModule.forRoot(entityConfig),
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    EffectsModule.forRoot([AppEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        // strictStateSerializability: true,
+        // strictActionSerializability: true,
+        // strictActionWithinNgZone: true,
+        // strictActionTypeUniqueness: true,
+      },
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [PostDataService, postsResolver],
   bootstrap: [AppComponent]
