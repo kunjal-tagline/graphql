@@ -14,7 +14,8 @@ posts$:Observable<Post[]> | undefined
   constructor(private postService:PostService) { }
 
   ngOnInit(): void {
-    this.posts$=this.postService.getAll();
+    //this.posts$=this.postService.getAll();
+    this.posts$=this.postService.entities$;
     console.log('this.posts$ :>> ', this.posts$);
   }
 }

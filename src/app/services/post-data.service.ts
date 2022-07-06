@@ -1,7 +1,7 @@
 import { Post } from './../models/post.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
+import { DefaultDataService, DefaultDataServiceConfig, HttpUrlGenerator } from '@ngrx/data';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -23,4 +23,9 @@ export class PostDataService extends DefaultDataService<Post> {
   //     })
   //   );
   // }
+
+  public defaultDataServiceConfig: DefaultDataServiceConfig = { 
+    root: 'https://jsonplaceholder.typicode.com/posts',
+    timeout: 3000, // request timeout 
+}
 }
