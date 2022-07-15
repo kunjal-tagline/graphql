@@ -24,6 +24,7 @@ import { AuthEffects } from './auth/state/auth.effects';
 import { postsReducer } from './posts/state/posts.reducer';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './router/custom.serializer';
+import { HomeComponent } from './home/home.component';
 // export function debug(reducer: ActionReducer<any>):ActionReducer<any>{
 //   return function(state,action){
 //     console.log('state :>> ', state);
@@ -41,6 +42,7 @@ import { CustomSerializer } from './router/custom.serializer';
     CounterOutputComponent,
     GraphqlComponent,
     LearnGraphqlComponent,
+    HomeComponent,
   ],
   imports: [
     HttpClientModule,
